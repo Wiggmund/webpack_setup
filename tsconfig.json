@@ -1,0 +1,49 @@
+{
+    "include": [
+        "./src/**/*"      
+    ],
+
+    "exclude": [
+        "./build",
+        "./node_modules"
+    ],
+
+    "compilerOptions": {
+        // Base
+        "target": "ES6",
+        "jsx": "react-jsx",
+
+        "module": "ESNext",
+        "moduleResolution": "Node", // Just for safety. It can be switched to Classic when you change "module" option
+        "esModuleInterop": true, //include "allowSyntheticDefaultImports": true
+		"isolatedModules": true,
+		"skipLibCheck": true,
+
+        // Strictness
+        "alwaysStrict": true,
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "strictNullChecks": true,
+        "strictPropertyInitialization": true,
+        "strictFunctionTypes": true,
+        "strictBindCallApply": true,
+
+        "noPropertyAccessFromIndexSignature": true,
+        "noUncheckedIndexedAccess": true,
+
+        "allowUnreachableCode": false,
+        "allowUnusedLabels": false,
+
+        "forceConsistentCasingInFileNames": true,
+        
+        // Linter
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+
+        // Other
+        "resolveJsonModule": true,
+		"noEmit": true
+    }
+}
