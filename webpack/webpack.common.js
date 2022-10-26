@@ -1,10 +1,20 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+const isDevMode = process.env.NODE_ENV === 'development';
+
+const generateName = (ext) => {
+	return isDevMode ? `[name].${ext}` : `[name].[contenthash].${ext}`;
+};
 
 const plugins = [
 	new HtmlWebpackPlugin({
 		template: path.join('src', 'index.html'),
-		filename: 'index.html'
+		filename: generateName('html')
+	}),
+	new MiniCssExtractPlugin({
+		filename: generateName('css')
 	})
 ];
 
@@ -20,6 +30,8 @@ module.exports = {
 	},
 
 	output: {
+		filename: generateName('js'),
+		assetModuleFilename: `assets/[name].${isDevMode ? '[ext]' : '[contenthash][ext]'}`,
 		path: path.resolve(__dirname, '..', 'build'),
 		clean: true
 	},
@@ -32,7 +44,7 @@ module.exports = {
 			},
 			{
 				test: /\.css$/,
-				use: ['style-loader', 'css-loader']
+				use: [isDevMode ? 'style-loader' : MiniCssExtractPlugin.loader, 'css-loader']
 			},
 			{
 				test: /\.(ts|js)x?$/,

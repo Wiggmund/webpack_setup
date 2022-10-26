@@ -1,11 +1,17 @@
-const webpack = require('webpack');
-
 module.exports = {
 	mode: 'production',
 	devtool: 'source-map',
-	plugins: [
-		new webpack.DefinePlugin({
-			'process.env.name': JSON.stringify('Prod name')
-		})
-	]
+	optimization: {
+		moduleIds: 'deterministic',
+		runtimeChunk: 'single',
+		splitChunks: {
+			cacheGroups: {
+				vendor: {
+					test: /[\\/]node_modules[\\/]/,
+					name: 'vendors',
+					chunks: 'all'
+				}
+			}
+		}
+	}
 };

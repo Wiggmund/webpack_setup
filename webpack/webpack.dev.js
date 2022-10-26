@@ -1,9 +1,8 @@
 const path = require('path');
-const webpack = require('webpack');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 require('dotenv').config();
-const PORT = process.env.PORT || 3000;
+const PORT = Number(process.env.PORT) || 3000;
 
 module.exports = {
 	mode: 'development',
@@ -19,10 +18,5 @@ module.exports = {
 		open: true
 	},
 
-	plugins: [
-		new webpack.DefinePlugin({
-			'process.env.name': JSON.stringify('Dev name')
-		}),
-		new ReactRefreshWebpackPlugin()
-	]
+	plugins: [new ReactRefreshWebpackPlugin()]
 };
