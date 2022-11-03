@@ -19,8 +19,8 @@ const plugins = [
 ];
 
 const cssLoaders = isDevMode
-	? ['style-loader', 'css-loader']
-	: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'];
+	? ['style-loader', 'css-loader', 'sass-loader']
+	: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'];
 
 module.exports = {
 	context: path.resolve(__dirname, '..'),
@@ -47,7 +47,7 @@ module.exports = {
 				use: ['html-loader']
 			},
 			{
-				test: /\.css$/,
+				test: /\.(c|sa|sc)ss$/,
 				use: cssLoaders
 			},
 			{
